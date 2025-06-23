@@ -8,10 +8,18 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
-app.use(express.json()); // pour parser le JSON dans le body
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
 
-// Route principale pour les blagues
+app.use(cors(corsOptions));
+// app.use(cors()); 
+
+app.use(express.json()); 
+
+// Main route for the API
 app.use('/api', router);
 
 app.get('/', (req, res) => {

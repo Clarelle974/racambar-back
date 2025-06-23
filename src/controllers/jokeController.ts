@@ -33,6 +33,16 @@ const readById: RequestHandler=async (req, res, next) => {
   }
 };
 
+const readCount: RequestHandler=async (req, res, next) => {
+  try {
+    const count = await Joke.count();
+    res.json({ count });
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur serveur' });
+     next(error)
+  }
+};
+
 const add: RequestHandler=async (req, res, next) => {
   const { question, answer } = req.body;
 
@@ -52,6 +62,7 @@ const add: RequestHandler=async (req, res, next) => {
 export default {
   browse,
   add, 
+  readCount,
   readRandom,
   readById
 };
