@@ -25,8 +25,8 @@ const readRandom: RequestHandler=async (req, res, next) => {
 const readById: RequestHandler=async (req, res, next) => {
   try {
     const joke = await Joke.findByPk(req.params.id);
-    if (!joke)  res.status(404).json({ message: 'Blague non trouvée' });
-     res.json(joke);
+    if (!joke)  return res.status(404).json({ message: 'Blague non trouvée' });
+    res.json(joke);
   } catch (error) {
     res.status(500).json({ message: 'Erreur serveur' });
      next(error)

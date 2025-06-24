@@ -43,6 +43,8 @@ Install dependencies:
 npm install
 Create your .env file as described above.
 
+You may need to install types, for example npm i --save-dev @types/swagger-ui-express
+
 Run database migrations and seed data :
 npm run db:migrate
 npm run db:seed
